@@ -1348,8 +1348,6 @@ struct hdd_fw_mem_dump_req_ctx {
  */
 typedef void (*hdd_fw_mem_dump_req_cb)(void *context);
 
-int memdump_init(void);
-int memdump_deinit(void);
 void wlan_hdd_fw_mem_dump_cb(void *,tAniFwrDumpRsp *);
 int wlan_hdd_fw_mem_dump_req(hdd_context_t * pHddCtx);
 void wlan_hdd_fw_mem_dump_req_cb(void *context);
