@@ -13,47 +13,42 @@ ifeq ($(KERNEL_BUILD),1)
 	WLAN_ROOT := drivers/staging/prima
 endif
 
-ifeq ($(KERNEL_BUILD), 0)
-# These are configurable via Kconfig for kernel-based builds
-# Need to explicitly configure for Android-based builds
+# Flag to enable BlueTooth AMP feature
+CONFIG_PRIMA_WLAN_BTAMP := n
 
-#Flag to enable BlueTooth AMP feature
-    CONFIG_PRIMA_WLAN_BTAMP := n
+# Flag to enable Legacy Fast Roaming(LFR)
+CONFIG_PRIMA_WLAN_LFR := y
 
-#Flag to enable Legacy Fast Roaming(LFR)
-    CONFIG_PRIMA_WLAN_LFR := y
+# Flag to enable Legacy Fast Roaming(LFR) Make Before Break
+CONFIG_PRIMA_WLAN_LFR_MBB := y
 
-#Flag to enable Legacy Fast Roaming(LFR) Make Before Break
-    CONFIG_PRIMA_WLAN_LFR_MBB := y
-
-#JB kernel has PMKSA patches, hence enabling this flag
-    CONFIG_PRIMA_WLAN_OKC := y
+# JB kernel has PMKSA patches, hence enabling this flag
+CONFIG_PRIMA_WLAN_OKC := y
 
 # JB kernel has CPU enablement patches, so enable
-    CONFIG_PRIMA_WLAN_11AC_HIGH_TP := y
+CONFIG_PRIMA_WLAN_11AC_HIGH_TP := y
 
-#Flag to enable mDNS feature
-    CONFIG_MDNS_OFFLOAD_SUPPORT := y
+# Flag to enable mDNS feature
+CONFIG_MDNS_OFFLOAD_SUPPORT := y
 
-#Flag to enable TDLS feature
-    CONFIG_QCOM_TDLS := y
+# Flag to enable TDLS feature
+CONFIG_QCOM_TDLS := y
 
-#Flag to enable Fast Transition (11r) feature
-    CONFIG_QCOM_VOWIFI_11R := y
+# Flag to enable Fast Transition (11r) feature
+CONFIG_QCOM_VOWIFI_11R := y
 
-#Flag to enable Protected Managment Frames (11w) feature
+# Flag to enable Protected Managment Frames (11w) feature
 ifneq ($(CONFIG_PRONTO_WLAN),)
     CONFIG_WLAN_FEATURE_11W := y
-    endif
+endif
 
-#Flag to enable new Linux Regulatory implementation
-    CONFIG_ENABLE_LINUX_REG := y
+# Flag to enable new Linux Regulatory implementation
+CONFIG_ENABLE_LINUX_REG := y
 
-#Flag to enable offload packets feature
-    CONFIG_WLAN_OFFLOAD_PACKETS := y
+# Flag to enable offload packets feature
+CONFIG_WLAN_OFFLOAD_PACKETS := y
 
-    endif
-#Flag to enable AP Find feature
+# Flag to enable AP Find feature
 CONFIG_WLAN_FEATURE_AP_FIND := y
 
 # Flag to enable feature Software AP Authentication Offload
@@ -64,18 +59,16 @@ SAP_AUTH_OFFLOAD := y
 CONFIG_QCOM_ESE := n
 CONFIG_QCOM_ESE_UPLOAD := n
 
-# Feature flags which are not (currently) configurable via Kconfig
-
 # Whether to build debug version
 BUILD_DEBUG_VERSION := 0
 
-#Enable this flag to build driver in diag version
+# Enable this flag to build driver in diag version
 BUILD_DIAG_VERSION := 1
 
-#Do we panic on bug?  default is to warn
+# Do we panic on bug?  default is to warn
 PANIC_ON_BUG := 1
 
-#Re-enable wifi on WDI timeout
+# Re-enable wifi on WDI timeout
 RE_ENABLE_WIFI_ON_WDI_TIMEOUT := 0
 
 ifeq ($(CONFIG_CFG80211),y)
