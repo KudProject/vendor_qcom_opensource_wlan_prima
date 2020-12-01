@@ -57,10 +57,15 @@ CONFIG_WLAN_FEATURE_AP_FIND := y
 # Flag to enable feature Software AP Authentication Offload
 SAP_AUTH_OFFLOAD := y
 
-# To enable CONFIG_QCOM_ESE_UPLOAD, dependent config
-# CONFIG_QCOM_ESE must be enabled.
+# Flag to enable ESE
 CONFIG_QCOM_ESE := n
+ifeq ($(CONFIG_QCOM_ESE),y)
+ifeq ($(WLAN_PROPRIETARY),1)
 CONFIG_QCOM_ESE_UPLOAD := n
+else
+CONFIG_QCOM_ESE_UPLOAD := y
+endif
+endif
 
 # Whether to build debug version
 BUILD_DEBUG_VERSION := 0
