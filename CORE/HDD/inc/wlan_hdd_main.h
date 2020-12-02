@@ -1237,7 +1237,7 @@ struct hdd_adapter_s
    v_BOOL_t isLinkLayerStatsSet;
 #endif
    /* DSCP to UP QoS Mapping */
-   sme_QosWmmUpType hddWmmDscpToUpMap[WLAN_HDD_MAX_DSCP+1];
+   sme_QosWmmUpType hddWmmDscpToUpMap[WLAN_MAX_DSCP+1];
    /* Lock for active sessions while processing deauth/Disassoc */
    spinlock_t lock_for_active_session;
    tSirFwStatsResult  fwStatsRsp;
@@ -1348,8 +1348,6 @@ struct hdd_fw_mem_dump_req_ctx {
  */
 typedef void (*hdd_fw_mem_dump_req_cb)(void *context);
 
-int memdump_init(void);
-int memdump_deinit(void);
 void wlan_hdd_fw_mem_dump_cb(void *,tAniFwrDumpRsp *);
 int wlan_hdd_fw_mem_dump_req(hdd_context_t * pHddCtx);
 void wlan_hdd_fw_mem_dump_req_cb(void *context);
