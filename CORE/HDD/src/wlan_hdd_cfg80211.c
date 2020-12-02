@@ -6377,6 +6377,7 @@ static int __wlan_hdd_cfg80211_wifi_logger_start(struct wiphy *wiphy,
                         const void *data,
                                 int data_len)
 {
+#ifdef WLAN_LOGGING_SOCK_SVC_ENABLE
     eHalStatus status;
     hdd_context_t *hdd_ctx = wiphy_priv(wiphy);
     struct nlattr *tb[QCA_WLAN_VENDOR_ATTR_WIFI_LOGGER_START_MAX + 1];
@@ -6426,12 +6427,15 @@ static int __wlan_hdd_cfg80211_wifi_logger_start(struct wiphy *wiphy,
         !vos_isPktStatsEnabled()))
 
     {
+#endif
        hddLog(LOGE, FL("per pkt stats not enabled"));
        return -EINVAL;
+#ifdef WLAN_LOGGING_SOCK_SVC_ENABLE
     }
 
     vos_set_ring_log_level(start_log.ringId, start_log.verboseLevel);
     return 0;
+#endif
 }
 
 /**
@@ -8473,12 +8477,14 @@ __wlan_hdd_cfg80211_get_logger_supp_feature(struct wiphy *wiphy,
 
 	features = 0;
 
+#ifdef WLAN_LOGGING_SOCK_SVC_ENABLE
 	if (hdd_ctx->cfg_ini->wlanLoggingEnable &&
 	    hdd_ctx->cfg_ini->enableFatalEvent &&
 	    hdd_ctx->is_fatal_event_log_sup) {
 		features |= WIFI_LOGGER_PER_PACKET_TX_RX_STATUS_SUPPORTED;
 		features |= WIFI_LOGGER_CONNECT_EVENT_SUPPORTED;
 	}
+#endif
 
 	reply_skb = cfg80211_vendor_cmd_alloc_reply_skb(wiphy,
 			sizeof(uint32_t) + NLA_HDRLEN + NLMSG_HDRLEN);
