@@ -2529,6 +2529,7 @@ WDI_Status WDI_ProcessSetTxPowerReq
   WDI_EventInfoType*     pEventData
 );
 
+#ifdef WLAN_FEATURE_P2P
 /**
  @brief Process P2P Notice Of Absence Request function (called when Main FSM
         allows it)
@@ -2545,6 +2546,7 @@ WDI_ProcessP2PGONOAReq
   WDI_ControlBlockType*  pWDICtx,
   WDI_EventInfoType*     pEventData
 );
+#endif
 
 /**
  @brief Process TDLS Link Establish Request function (called when Main FSM
@@ -4763,6 +4765,7 @@ WDI_ProcessTXFailInd
 );
 #endif /* WLAN_FEATURE_RMC */
 
+#ifdef WLAN_FEATURE_P2P
 /**
 *@brief Process Noa Start Indication function (called when
         an indication of this kind is being received over the
@@ -4798,6 +4801,7 @@ WDI_ProcessP2pNoaAttrInd
   WDI_ControlBlockType*  pWDICtx,
   WDI_EventInfoType*     pEventData
 );
+#endif
 
 /**
 *@brief Process Tx Per Hit Indication function (called when
