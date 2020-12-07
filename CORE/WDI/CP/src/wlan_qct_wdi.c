@@ -39576,6 +39576,7 @@ WDI_Status WDI_process_sap_auth_offload(
 
     return WDI_PostMainEvent(&gWDICb, WDI_REQUEST_EVENT, &wdiEventData);
 }
+#endif
 
 /**
  *  wdi_process_cap_tsf_req() - Send Capture tsf request to FW.
@@ -39821,4 +39822,3 @@ wdi_get_tsf_rsp
 
         return WDI_STATUS_SUCCESS;
 }
-#endif
